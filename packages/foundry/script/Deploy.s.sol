@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "../contracts/Lending.sol";
 import "./DeployHelpers.s.sol";
 
-contract DeployScript is ScaffoldETHDeploy {
+contract Deploy is ScaffoldETHDeploy {
     error InvalidPrivateKey(string);
 
     function run() external {
