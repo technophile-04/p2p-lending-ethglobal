@@ -57,40 +57,47 @@ const Borrow: NextPage = () => {
   }, [loanAmount, repayAmount]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex items-center flex-col pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Borrowing</span>
-          </h1>
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-2">Welcome to Borrowing</h1>
+        <p className="text-xl text-base-content/70">Request a loan or manage your existing loans</p>
       </div>
-      <div className="card bg-base-100 w-96 shadow-xl">
-        <div className="card-body">
-          <div className="flex flex-col space-y-1">
-            <p className="m-0">Enter loan amount</p>
-            <InputBase placeholder="loan Amount" value={loanAmount} onChange={setLoanAmount} />
-          </div>
-          <div className="flex flex-col space-y-1">
-            <p className="m-0">Enter repayment amount</p>
-            <InputBase placeholder="loan Amount" value={repayAmount} onChange={setRepayAmount} />
-          </div>
-          {interestRate !== null && (
-            <div className="mt-4 text-center">
-              <p className="font-bold m-0">Annual Interest Rate:</p>
-              <p className="text-xl text-primary m-0">{interestRate.toFixed(2)}%</p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title mb-4">Request a Loan</h2>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Loan Amount</span>
+              </label>
+              <InputBase placeholder="Enter loan amount" value={loanAmount} onChange={setLoanAmount} />
             </div>
-          )}
-          <button className="btn btn-primary btn-md" onClick={handleBorrow}>
-            Borrow
-          </button>
+            <div className="form-control mt-4">
+              <label className="label">
+                <span className="label-text">Repayment Amount</span>
+              </label>
+              <InputBase placeholder="Enter repayment amount" value={repayAmount} onChange={setRepayAmount} />
+            </div>
+            {interestRate !== null && (
+              <div className="mt-4 text-center">
+                <p className="font-bold">Annual Interest Rate:</p>
+                <p className="text-2xl text-primary">{interestRate.toFixed(2)}%</p>
+              </div>
+            )}
+            <div className="card-actions justify-end mt-6">
+              <button className="btn btn-primary" onClick={handleBorrow}>
+                Request Loan
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col mt-8">
-        <h1 className="text-center text-2xl">Borrowed Loan</h1>
-        <div className="overflow-x-auto w-full shadow-2xl rounded-xl">
-          {borrowerLoans && <BrrowedTable borrowerLoans={borrowerLoans} />}
+
+        <div className="card bg-base-200 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title mb-4">Your Loans</h2>
+            {borrowerLoans && <BrrowedTable borrowerLoans={borrowerLoans} />}
+          </div>
         </div>
       </div>
     </div>
